@@ -1,3 +1,3 @@
 
-cmake_minimum_required(3.26.0)
+cmake_minimum_required(VERSION 3.26.0)
 
