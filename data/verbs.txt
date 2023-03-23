@@ -33,3 +33,4 @@ maime
 cut
 smell
 fart
+ban

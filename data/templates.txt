@@ -23,3 +23,9 @@ You either a {NOUN} {ADJ} or a {ADJ} {NOUN}
 {VERB}ing {NOUN}, man
 {NOUN}
 God's {ADJ}est {NOUN}
+I make the {NOUN} sound when I {VERB}
+Yeah I'm {NOUN}.
+Yeah, I {VERB}.
+This guy definitely {VERB}s
+We should {VERB} {NOUN} because they are a {ADJ} {NOUN}
+{NOUN} the {NOUN}
