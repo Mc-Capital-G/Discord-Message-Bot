@@ -42,7 +42,6 @@ int main() {
         }   
         if(event.msg.content.find("<@615210140009889840>") != string::npos)  {
             bot.message_create(dpp::message(event.msg.channel_id, generateMessage()));
-            
         }
         
         cout << event.msg.content << endl;
