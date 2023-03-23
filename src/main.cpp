@@ -28,11 +28,11 @@ int main() {
 
         if(event.msg.content == "!msg") {
             bot.message_create(dpp::message(event.msg.channel_id, generateMessage()));
-            cout << "I can read and interpret the message!" << endl;
+            
         }
-        //bot.message_create(dpp::message(event.msg.channel_id, generateMessage()));
+        
         cout << event.msg.content << endl;
-        cout << "I can see the message!" << endl;
+
     });
 
     bot.start(false);
