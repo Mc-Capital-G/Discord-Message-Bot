@@ -36,3 +36,5 @@ I wish I had a {ADJ} {NOUN}
 @everyone
 {VERB} me a {NOUN}
 And their name is {NOUN}
+I love {NOUN}
+As {NOUN} once said: {STATEMENT}

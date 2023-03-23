@@ -32,6 +32,11 @@ string generateMessage() {
         output.insert(i, adjective.getRandomEntry());
 
     }
+    while(output.find("{STATEMENT}") != string::npos) {
+        int i = output.find("{STATEMENT}");
+        output.erase(i, 11);
+        output.insert(i, generateMessage());
+    }
 
     return output;
 }

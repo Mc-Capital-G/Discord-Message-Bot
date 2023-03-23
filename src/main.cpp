@@ -26,15 +26,25 @@ int main() {
 
     });
 
-    bot.on_message_create([&bot](const dpp::message_create_t & event){
+    int msgCount = 0;
+    random_device rd;
+    uniform_int_distribution<int> dist(1, 100);
 
-        if(event.msg.content == "!msg") {
+    int randomMessageNum = dist(rd);
+
+    bot.on_message_create([&bot, &msgCount, &randomMessageNum](const dpp::message_create_t & event){
+
+        if(msgCount == randomMessageNum) {
+            bot.message_create(dpp::message(event.msg.channel_id, generateMessage()));
+            msgCount = 0;
+        }   
+        if(event.msg.content.find("<@615210140009889840>") != string::npos)  {
             bot.message_create(dpp::message(event.msg.channel_id, generateMessage()));
             
         }
         
         cout << event.msg.content << endl;
-
+        msgCount++;
     });
 
     bot.start(false);
