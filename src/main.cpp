@@ -28,7 +28,7 @@ int main() {
 
     int msgCount = 0;
     random_device rd;
-    uniform_int_distribution<int> dist(1, 100);
+    uniform_int_distribution<int> dist(1, 35);
 
     int randomMessageNum = dist(rd);
 
