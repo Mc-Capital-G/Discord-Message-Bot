@@ -32,11 +32,13 @@ int main() {
 
     int randomMessageNum = dist(rd);
 
-    bot.on_message_create([&bot, &msgCount, &randomMessageNum](const dpp::message_create_t & event){
+    bot.on_message_create([&bot, &msgCount, &randomMessageNum, &dist](const dpp::message_create_t & event){
 
         if(msgCount == randomMessageNum) {
             bot.message_create(dpp::message(event.msg.channel_id, generateMessage()));
             msgCount = 0;
+            random_device rd1;
+            randomMessageNum = dist(rd1);
         }   
         if(event.msg.content.find("<@615210140009889840>") != string::npos)  {
             bot.message_create(dpp::message(event.msg.channel_id, generateMessage()));
