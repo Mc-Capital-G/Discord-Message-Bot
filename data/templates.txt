@@ -19,7 +19,7 @@ What's the deal with {NOUN}?
 {NOUN}? Never heard of it.
 {VERB}ing? At this hour?
 I'd rather {VERB} {NOUN} before I {VERB} {NOUN}
-You either a {NOUN} {ADJ} or a {ADJ} {NOUN}
+You either a {ADJ} {NOUN} or a {ADJ} {NOUN}
 {VERB}ing {NOUN}, man
 {NOUN}
 God's {ADJ}est {NOUN}
@@ -33,3 +33,6 @@ Bitches be {VERB}ing. I'm bitches.
 {NOUN}s be {VERB}ing
 Jeremy
 I wish I had a {ADJ} {NOUN}
+@everyone
+{VERB} me a {NOUN}
+And their name is {NOUN}
