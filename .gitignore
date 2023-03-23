@@ -2,3 +2,4 @@ build/
 libs/dpp
 .vscode/
 data/token.txt
+src/.DS_Store
