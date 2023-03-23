@@ -10,9 +10,11 @@ int main() {
 
     ifstream tokenFile;
     tokenFile.open("../data/token.txt");
-
+  
     string token;
     getline(tokenFile, token);
+
+    tokenFile.close();
 
     uint64_t intents = dpp::i_default_intents | dpp::i_message_content;
 
