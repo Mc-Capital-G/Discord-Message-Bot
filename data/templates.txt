@@ -1,1 +1,2 @@
-she {ADJ} on my {NOUN} till I {ADJ}
+she {VERB} on my {NOUN} till I {VERB}
+she be {VERB}ing on my {NOUN}

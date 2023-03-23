@@ -2,6 +2,7 @@
 #include <fstream>
 #include <random>
 #include <string.h>
+#include <sstream>
 
 using namespace std;
 
@@ -22,13 +23,34 @@ int main() {
 
     dataType templates("templates.txt");
     dataType noun("nouns.txt");
-    dataType adjective("adjective.txt");
+    dataType verb("verbs.txt");
+    dataType adjective("adjectives.txt");
     
     string output;
 
     output = templates.getRandomEntry();
+    
+    while (output.find("{VERB}")!= string::npos) {
+        int i = output.find("{VERB}");
+        output.erase(i, 6);
+        output.insert(i, verb.getRandomEntry());
 
-    cout << noun.getRandomEntry() << endl;
+    }
+
+     while (output.find("{NOUN}")!= string::npos) {
+        int i = output.find("{NOUN}");
+        output.erase(i, 6);
+        output.insert(i, noun.getRandomEntry());
+
+    }
+    while (output.find("{ADJ}")!= string::npos) {
+        int i = output.find("{ADJ}");
+        output.erase(i, 5);
+        output.insert(i, adjective.getRandomEntry());
+
+    }
+
+    cout << output << endl;
 
     return 0;
 }
