@@ -1,3 +1,4 @@
 build/
 libs/dpp
-.vxcode/
+.vscode/
+data/token.txt

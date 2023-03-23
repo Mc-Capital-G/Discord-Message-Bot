@@ -8,9 +8,15 @@ using namespace std;
 
 int main() {
 
+    ifstream tokenFile;
+    tokenFile.open("../data/token.txt");
+
+    string token;
+    getline(tokenFile, token);
+
     uint64_t intents = dpp::i_default_intents | dpp::i_message_content;
 
-    dpp::cluster bot("NjE1MjEwMTQwMDA5ODg5ODQw.GINdAm.jfCL4j9jRpVcfqsWa5GNsbt7gQrD1UFFcBCgPA", intents);
+    dpp::cluster bot(token, intents);
 
     bot.on_ready([&bot](const dpp::ready_t & event) {
 
