@@ -31,3 +31,4 @@ large
 dumb
 drunk
 based
+funny

@@ -9,7 +9,7 @@ using namespace std;
 int main() {
 
     ifstream tokenFile;
-    tokenFile.open("../data/token.txt");
+    tokenFile.open("data/token.txt");
   
     string token;
     getline(tokenFile, token);

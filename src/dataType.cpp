@@ -42,7 +42,7 @@ string generateMessage() {
 }
 
 dataType::dataType(string file) {
-    filePath = "../data/" + file;
+    filePath = "data/" + file;
 }
 
 string dataType::getRandomEntry() {
