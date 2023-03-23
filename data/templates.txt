@@ -20,3 +20,6 @@ What's the deal with {NOUN}?
 {VERB}ing? At this hour?
 I'd rather {VERB} {NOUN} before I {VERB} {NOUN}
 You either a {NOUN} {ADJ} or a {ADJ} {NOUN}
+{VERB}ing {NOUN}, man
+{NOUN}
+God's {ADJ}est {NOUN}
