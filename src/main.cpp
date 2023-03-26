@@ -3,6 +3,7 @@
 #include <random>
 #include <dataType.h>
 #include <dpp.h>
+#include <messageCreator.h>
 
 using namespace std;
 
@@ -20,6 +21,8 @@ int main() {
 
     dpp::cluster bot(token, intents);
 
+    messageCreator mC;
+
     bot.on_ready([&bot](const dpp::ready_t & event) {
 
         std::cout << "Logged in as " << bot.me.username << "." << endl; 
@@ -32,16 +35,16 @@ int main() {
 
     int randomMessageNum = dist(rd);
 
-    bot.on_message_create([&bot, &msgCount, &randomMessageNum, &dist](const dpp::message_create_t & event){
+    bot.on_message_create([&bot, &msgCount, &randomMessageNum, &dist, &mC](const dpp::message_create_t & event){
 
         if(msgCount == randomMessageNum) {
-            bot.message_create(dpp::message(event.msg.channel_id, generateMessage()));
+            bot.message_create(dpp::message(event.msg.channel_id, mC.getMessage()));
             msgCount = 0;
             random_device rd1;
             randomMessageNum = dist(rd1);
         }   
         if(event.msg.content.find("<@615210140009889840>") != string::npos)  {
-            bot.message_create(dpp::message(event.msg.channel_id, generateMessage()));
+            bot.message_create(dpp::message(event.msg.channel_id, mC.getMessage()));
         }
         
         cout << event.msg.content << endl;

@@ -1,9 +1,8 @@
+#pragma once
 #include <fstream>
 #include <random>
 
 using namespace std;
-
-string generateMessage();
 
 class dataType {
     public:

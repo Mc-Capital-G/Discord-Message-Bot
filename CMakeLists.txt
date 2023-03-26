@@ -4,7 +4,7 @@ project(Discord-Message-Bot)
 
 add_subdirectory(libs/DPP)
 
-add_executable(${PROJECT_NAME} src/main.cpp src/dataType.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp src/dataType.cpp src/messageCreator.cpp)
 
 target_link_libraries(${PROJECT_NAME} dpp)
 
