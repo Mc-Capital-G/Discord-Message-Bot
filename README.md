@@ -1,6 +1,9 @@
 
 This is an open source program designed to run a Discord Bot.
 
+This bot can generate messages based on given templates and words. The goal is to be able to output a random statement that usually comes with shock value humor.
+WARNING: Unless you change the data files, this bot is usually very vulgar and absolutely NOT pg rated.
+
 The executable requires its runtime to be in the root folder of the project (Where CMakeLists, .gitignore, and this README file are)
 
 If you intend to use this code to power your own bot, you will have to provide your own token in a file labeled "token.txt" in the data/ folder
