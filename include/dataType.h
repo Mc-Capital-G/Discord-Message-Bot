@@ -2,17 +2,15 @@
 #include <fstream>
 #include <random>
 
-using namespace std;
-
 class dataType {
     public:
-        string getRandomEntry();
-        dataType(string file);
+        std::string getRandomEntry();
+        dataType(std::string file);
         ~dataType();
     private:
-        ifstream file;
-        string filePath;
+        std::ifstream file;
+        std::string filePath;
         int numberOfLines;
-        string currentLine;
+        std::string currentLine;
 
 };

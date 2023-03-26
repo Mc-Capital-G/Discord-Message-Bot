@@ -5,14 +5,12 @@
 #include <dpp.h>
 #include <messageCreator.h>
 
-using namespace std;
-
 int main() {
 
-    ifstream tokenFile;
+    std::ifstream tokenFile;
     tokenFile.open("data/token.txt");
   
-    string token;
+    std::string token;
     getline(tokenFile, token);
 
     tokenFile.close();
@@ -25,13 +23,13 @@ int main() {
 
     bot.on_ready([&bot](const dpp::ready_t & event) {
 
-        std::cout << "Logged in as " << bot.me.username << "." << endl; 
+        std::cout << "Logged in as " << bot.me.username << "." << std::endl; 
 
     });
 
     int msgCount = 0;
-    random_device rd;
-    uniform_int_distribution<int> dist(1, 35);
+    std::random_device rd;
+    std::uniform_int_distribution<int> dist(1, 35);
 
     int randomMessageNum = dist(rd);
 
@@ -40,14 +38,14 @@ int main() {
         if(msgCount == randomMessageNum) {
             bot.message_create(dpp::message(event.msg.channel_id, mC.getMessage()));
             msgCount = 0;
-            random_device rd1;
+            std::random_device rd1;
             randomMessageNum = dist(rd1);
         }   
-        if(event.msg.content.find("<@615210140009889840>") != string::npos)  {
+        if(event.msg.content.find("<@615210140009889840>") != std::string::npos)  {
             bot.message_create(dpp::message(event.msg.channel_id, mC.getMessage()));
         }
         
-        cout << event.msg.content << endl;
+        std::cout << event.msg.content << std::endl;
         msgCount++;
     });
 

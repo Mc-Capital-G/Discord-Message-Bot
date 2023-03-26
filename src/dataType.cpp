@@ -1,20 +1,18 @@
 #include <dataType.h>
 
-using namespace std;
-
-dataType::dataType(string file) {
+dataType::dataType(std::string file) {
     filePath = "data/" + file;
 }
 
-string dataType::getRandomEntry() {
+std::string dataType::getRandomEntry() {
 
     file.open(filePath);
-    file.unsetf(ios_base::skipws);
-    numberOfLines = count(istream_iterator<char>(file), istream_iterator<char>(), '\n');
+    file.unsetf(std::ios_base::skipws);
+    numberOfLines = count(std::istream_iterator<char>(file), std::istream_iterator<char>(), '\n');
     file.clear();
-    file.seekg(0, ios::beg);
-    random_device rd;
-    uniform_int_distribution<int> dist(1, numberOfLines + 1);
+    file.seekg(0, std::ios::beg);
+    std::random_device rd;
+    std::uniform_int_distribution<int> dist(1, numberOfLines + 1);
 
     int randomLineNumber = dist(rd);
 

@@ -6,14 +6,14 @@
 class messageCreator {
 
     public:
-        string getMessage();
+        std::string getMessage();
         messageCreator();
         ~messageCreator();
     private:
         bool checkCache();
-        fstream cache;
-        string generateMessage();
-        string message;
+        std::fstream cache;
+        std::string generateMessage();
+        std::string message;
         int numberOfLines();
         void openCache();
 

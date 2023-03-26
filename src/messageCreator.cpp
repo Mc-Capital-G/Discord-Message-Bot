@@ -2,37 +2,37 @@
 
 #define CACHED_MESSAGE_LIMIT 100
 
-string messageCreator::generateMessage() {
+std::string messageCreator::generateMessage() {
 
     dataType templates("templates.txt");
     dataType noun("nouns.txt");
     dataType verb("verbs.txt");
     dataType adjective("adjectives.txt");
     
-    string output;
+    std::string output;
 
     output = templates.getRandomEntry();
     
-    while (output.find("{VERB}")!= string::npos) {
+    while (output.find("{VERB}")!= std::string::npos) {
         int i = output.find("{VERB}");
         output.erase(i, 6);
         output.insert(i, verb.getRandomEntry());
 
     }
 
-     while (output.find("{NOUN}")!= string::npos) {
+     while (output.find("{NOUN}")!= std::string::npos) {
         int i = output.find("{NOUN}");
         output.erase(i, 6);
         output.insert(i, noun.getRandomEntry());
 
     }
-    while (output.find("{ADJ}")!= string::npos) {
+    while (output.find("{ADJ}")!= std::string::npos) {
         int i = output.find("{ADJ}");
         output.erase(i, 5);
         output.insert(i, adjective.getRandomEntry());
 
     }
-    while(output.find("{STATEMENT}") != string::npos) {
+    while(output.find("{STATEMENT}") != std::string::npos) {
         int i = output.find("{STATEMENT}");
         output.erase(i, 11);
         output.insert(i, generateMessage());
@@ -59,10 +59,10 @@ bool messageCreator::checkCache() {
     int j = numberOfLines();
 
     cache.clear();
-    cache.seekg(0, ios::beg);
+    cache.seekg(0, std::ios::beg);
     
     for(int i = 0; i < j; i++) {
-        string cachedMessage;
+        std::string cachedMessage;
         getline(cache, cachedMessage);
         if(message == cachedMessage) {
             std::cout << "Generated message is in cache, generating new message..." << std::endl;
@@ -73,7 +73,7 @@ bool messageCreator::checkCache() {
     return false;
 }
 
-string messageCreator::getMessage() {
+std::string messageCreator::getMessage() {
     openCache();
     
     do { message = generateMessage(); } while (checkCache());
@@ -85,12 +85,12 @@ string messageCreator::getMessage() {
         int j = numberOfLines();
 
         cache.clear();
-        cache.seekg(0, ios::beg); //numberOfLines() fucks up file positioning, these reset it
+        cache.seekg(0, std::ios::beg); //numberOfLines() edits file positioning, these reset it
 
-        ofstream ofs;
+        std::ofstream ofs;
         ofs.open("data/tempCache.txt");
 
-        string cachedMessage;
+        std::string cachedMessage;
         getline(cache, cachedMessage);
 
         for(int i = 0; i < j - 1; i++) {
@@ -115,9 +115,9 @@ int messageCreator::numberOfLines() {
     openCache();
 
     cache.clear();
-    cache.seekg(0, ios::beg);
-    cache.unsetf(ios_base::skipws);
-    return count(istream_iterator<char>(cache), istream_iterator<char>(), '\n');
+    cache.seekg(0, std::ios::beg);
+    cache.unsetf(std::ios_base::skipws);
+    return count(std::istream_iterator<char>(cache), std::istream_iterator<char>(), '\n');
 }
 
 messageCreator::messageCreator() {
