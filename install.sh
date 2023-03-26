@@ -12,5 +12,3 @@ cmake -S . -B build/
 make -C build/
 
 echo "Add discord bot token to token.txt"
-
-read -p
