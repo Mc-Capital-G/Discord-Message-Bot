@@ -13,8 +13,8 @@ This program is built using D++, an open source C++ library for working with Dis
 You will have to run install.sh to finish setting up the project
 
 install.sh:
-    git clones the D++ library into the project for building
-    creates additional files that the program needs to function
-    attempts to run cmake and make to build the project
+    -git clones the D++ library into the project for building
+    -creates additional files that the program needs to function
+    -attempts to run cmake and make to build the project
 
 I do not currently have a working windows build, but D++ is available for windows and they provide pre-compiled binaries, which should be simple enough to set up.
