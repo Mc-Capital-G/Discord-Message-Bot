@@ -1,5 +1,5 @@
 
-This is an open source program designed to drive a Discord Bot.
+This is an open source program designed to run a Discord Bot.
 
 The executable requires its runtime to be in the root folder of the project (Where CMakeLists, .gitignore, and this README file are)
 
