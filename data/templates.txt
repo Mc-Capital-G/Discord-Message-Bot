@@ -73,3 +73,4 @@ I am going to {VERB} you
 You're a {NOUN} in a {NOUN}'s world. And I'm a {NOUN} who loves to {VERB} with {NOUN}s
 Common {NOUN} W
 Common {NOUN} L
+{ADJ} {NOUN}
