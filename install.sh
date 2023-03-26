@@ -4,7 +4,7 @@ touch data/cache.txt
 mkdir libs
 cd libs
 
-git clone https://github.com/brainboxdotcc.git
+git clone https://github.com/brainboxdotcc/dpp.git
 
 cd ..
 
