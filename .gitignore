@@ -1,6 +1,6 @@
 build/
 libs/dpp
 .vscode/
-data/cache.txt
 data/token.txt
 src/.DS_Store
+data/cache.txt
