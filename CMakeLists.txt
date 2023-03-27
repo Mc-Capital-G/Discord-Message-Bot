@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.26.0)
 
-project(Discord-Message-Bot)
+project(PunkinBot)
 
 add_subdirectory(libs/DPP)
 
