@@ -74,3 +74,5 @@ You're a {NOUN} in a {NOUN}'s world. And I'm a {NOUN} who loves to {VERB} with {
 Common {NOUN} W
 Common {NOUN} L
 {ADJ} {NOUN}
+Thinking about {NOUN}
+This guy definitely {VERB}s {NOUN}
