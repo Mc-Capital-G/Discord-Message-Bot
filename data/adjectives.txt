@@ -43,3 +43,11 @@ sexy
 adjective
 sick
 in debt
+cute
+mexican
+american
+british
+european
+russian
+french
+canadian
