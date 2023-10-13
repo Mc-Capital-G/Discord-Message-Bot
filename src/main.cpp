@@ -76,6 +76,9 @@ int main() {
         std::cout << event.msg.content << std::endl;
         msgCount++;
 
+        // kill the bot if the user says goodbye to it
+        if(event.msg.content == "Goodbye <@615210140009889840>") return 0;
+
     });
 
     // i don't remember what this does so don't touch it.
