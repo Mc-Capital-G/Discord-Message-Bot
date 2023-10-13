@@ -4,7 +4,7 @@
  * 
  * @author Declan McGrellis
 */
-#include <dataType.h>
+#include "dataType.h"
 
 /**
  * Initialize the dataType with a path to its file

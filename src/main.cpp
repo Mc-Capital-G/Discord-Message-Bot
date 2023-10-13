@@ -11,7 +11,7 @@
 #include <random>
 #include "dataType.h"
 #include <dpp.h>
-#include <messageCreator.h>
+#include "messageCreator.h"
 
 /**
  * Function main runs at program start
@@ -50,17 +50,23 @@ int main() {
     bot.on_message_create([&bot, &msgCount, &randomMessageNum, &dist, &mC](const dpp::message_create_t & event){
 
         if(msgCount == randomMessageNum) {
-            bot.message_create(dpp::message(event.msg.channel_id, mC.getMessage()));
+
+            bot.message_create(dpp::message(event.msg.channel_id, mC.getMessage(event.msg.content)));
             msgCount = 0;
             std::random_device rd1;
             randomMessageNum = dist(rd1);
+
         }   
+
         if(event.msg.content.find("<@615210140009889840>") != std::string::npos)  {
-            bot.message_create(dpp::message(event.msg.channel_id, mC.getMessage()));
+
+            bot.message_create(dpp::message(event.msg.channel_id, mC.getMessage(event.msg.content)));
+
         }
         
         std::cout << event.msg.content << std::endl;
         msgCount++;
+
     });
 
     bot.start(false);

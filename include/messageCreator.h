@@ -19,7 +19,7 @@
 class messageCreator {
 
     public:
-        std::string getMessage();
+        std::string getMessage(std::string usrMessage);
         messageCreator();
         ~messageCreator();
     private:

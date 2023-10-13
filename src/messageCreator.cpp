@@ -4,7 +4,7 @@
  * 
  * @author Declan McGrellis
 */
-#include <messageCreator.h>
+#include "messageCreator.h"
 
 #define CACHED_MESSAGE_LIMIT 100
 
@@ -99,13 +99,37 @@ bool messageCreator::checkCache() {
  * 
  * @return the valid message
 */
-std::string messageCreator::getMessage() {
+std::string messageCreator::getMessage(std::string usrMessage) {
     openCache();
+
+    bool addToCache = true;
     
     do { message = generateMessage(); } while (checkCache());
 
+    // if the bot rolls a {REPEAT}, we are going to repeat the users message
+    if(message == "{REPEAT}") {
+
+        addToCache = false;
+
+        message = usrMessage;
+
+        // remove the @PunkinBot from the message so the bot does not @ himself and loop for eternity
+        // only replace the @PunkinBot with ... if it is the only thing that is non-whitespace
+        while(message.find("<@615210140009889840>") != std::string::npos) {
+            int i = message.find("<@615210140009889840>");
+            message.erase(i, 21);
+            if(message.find_first_not_of(" ") == std::string::npos) message.insert(i, "...");
+        }
+
+        for(int i = 0; i < message.size(); i++) {
+            if(i % 2 == 0) message[i] = std::toupper(message[i]);
+            else message[i] = std::tolower(message[i]);
+        }
+
+    }
+
     cache.clear();
-    cache << message << std::endl;
+    if(addToCache) cache << message << std::endl;
 
     if(numberOfLines() > CACHED_MESSAGE_LIMIT) {
         int j = numberOfLines();
