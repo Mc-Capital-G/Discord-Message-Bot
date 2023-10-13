@@ -81,7 +81,8 @@ int main() {
 
             bot.message_create(dpp::message(event.msg.channel_id, "See you later nerd."));
 
-            return 0;
+            bot.start(false);
+
         }
 
     });
