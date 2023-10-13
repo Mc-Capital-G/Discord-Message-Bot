@@ -25,6 +25,9 @@ std::string messageCreator::generateMessage() {
 
     output = templates.getRandomEntry();
     
+    // for each dataType object, find any placeholder elements and 
+    // replace it with a generated output from the dataType
+
     while (output.find("{VERB}")!= std::string::npos) {
         int i = output.find("{VERB}");
         output.erase(i, 6);
@@ -170,6 +173,7 @@ int messageCreator::numberOfLines() {
     cache.clear();
     cache.seekg(0, std::ios::beg);
     cache.unsetf(std::ios_base::skipws);
+    
     return count(std::istream_iterator<char>(cache), std::istream_iterator<char>(), '\n');
 }
 
