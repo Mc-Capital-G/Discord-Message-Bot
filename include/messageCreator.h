@@ -30,5 +30,4 @@ class messageCreator {
         int numberOfLines();
         void openCache();
 
-
 };
