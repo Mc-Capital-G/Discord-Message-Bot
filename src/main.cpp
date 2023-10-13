@@ -58,7 +58,6 @@ int main() {
     // When a message is created in any channel the bot can see, it will run this code
     bot.on_message_create([&bot, &msgCount, &randomMessageNum, &dist, &mC, &pauseBot](const dpp::message_create_t & event){
 
-
         if(!pauseBot) {
             // create a message and reset the random message counter if the message hits the previous generated limit
             if(msgCount == randomMessageNum) {
@@ -90,6 +89,7 @@ int main() {
 
         }
 
+        // unpause the bot
         if(event.msg.content == "Wakey wakey <@615210140009889840>") {
 
             bot.message_create(dpp::message(event.msg.channel_id, "I have returned."));
