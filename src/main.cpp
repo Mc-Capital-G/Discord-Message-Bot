@@ -53,35 +53,48 @@ int main() {
     std::uniform_int_distribution<int> dist(1, 35);
     int randomMessageNum = dist(rd);
 
+    bool pauseBot = false;
+
     // When a message is created in any channel the bot can see, it will run this code
-    bot.on_message_create([&bot, &msgCount, &randomMessageNum, &dist, &mC](const dpp::message_create_t & event){
+    bot.on_message_create([&bot, &msgCount, &randomMessageNum, &dist, &mC, &pauseBot](const dpp::message_create_t & event){
 
-        // create a message and reset the random message counter if the message hits the previous generated limit
-        if(msgCount == randomMessageNum) {
 
-            bot.message_create(dpp::message(event.msg.channel_id, mC.getMessage(event.msg.content)));
-            msgCount = 0;
-            std::random_device rd1;
-            randomMessageNum = dist(rd1);
+        if(!pauseBot) {
+            // create a message and reset the random message counter if the message hits the previous generated limit
+            if(msgCount == randomMessageNum) {
 
-        }   
+                bot.message_create(dpp::message(event.msg.channel_id, mC.getMessage(event.msg.content)));
+                msgCount = 0;
+                std::random_device rd1;
+                randomMessageNum = dist(rd1);
 
-        // create a message if the bot is mentioned in any channel it can see
-        if(event.msg.content.find("<@615210140009889840>") != std::string::npos)  {
+            }   
 
-            bot.message_create(dpp::message(event.msg.channel_id, mC.getMessage(event.msg.content)));
+            // create a message if the bot is mentioned in any channel it can see
+            if(event.msg.content.find("<@615210140009889840>") != std::string::npos)  {
 
+                bot.message_create(dpp::message(event.msg.channel_id, mC.getMessage(event.msg.content)));
+
+            }
+            
+            std::cout << event.msg.content << std::endl;
+            msgCount++;
         }
-        
-        std::cout << event.msg.content << std::endl;
-        msgCount++;
 
-        // kill the bot if the user says goodbye to it
+        // pause the bot if the user says goodbye to it
         if(event.msg.content == "Goodbye <@615210140009889840>") {
 
             bot.message_create(dpp::message(event.msg.channel_id, "See you later nerd."));
 
-            bot.start(false);
+            pauseBot = true;
+
+        }
+
+        if(event.msg.content == "Wakey wakey <@615210140009889840>") {
+
+            bot.message_create(dpp::message(event.msg.channel_id, "I have returned."));
+
+            pauseBot = false;
 
         }
 
