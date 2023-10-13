@@ -77,7 +77,12 @@ int main() {
         msgCount++;
 
         // kill the bot if the user says goodbye to it
-        if(event.msg.content == "Goodbye <@615210140009889840>") return 0;
+        if(event.msg.content == "Goodbye <@615210140009889840>") {
+
+            bot.message_create(dpp::message(event.msg.channel_id, "See you later nerd."));
+
+            return 0;
+        }
 
     });
 
