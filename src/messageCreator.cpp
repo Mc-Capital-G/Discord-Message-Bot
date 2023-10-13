@@ -1,7 +1,19 @@
+/**
+ * messageCreator.cpp:
+ * Definitions of the members of the messageCreator controller class
+ * 
+ * @author Declan McGrellis
+*/
 #include <messageCreator.h>
 
 #define CACHED_MESSAGE_LIMIT 100
 
+/**
+ * Generate a random message from the given datatypes by picking a random template and replacing the 
+ * "blanks" in the template with other data types.
+ * 
+ * @return the generated random message
+*/
 std::string messageCreator::generateMessage() {
 
     dataType templates("templates.txt");
@@ -41,6 +53,9 @@ std::string messageCreator::generateMessage() {
     return output;
 }
 
+/**
+ * Open the bot's message cache
+*/
 void messageCreator::openCache() {
     if(!cache.is_open()) {
         std::cout << "Opening cache..." << std::endl;
@@ -53,6 +68,11 @@ void messageCreator::openCache() {
     }
 }
 
+/**
+ * Check to see if the current message has already been generated recently by comparing it to the cache
+ * 
+ * @return if the current generated message is in the cache or not
+*/
 bool messageCreator::checkCache() {
     openCache();
 
@@ -73,6 +93,12 @@ bool messageCreator::checkCache() {
     return false;
 }
 
+/**
+ * Generate random messages until a new valid* message has been generated, and update the cache with the new message
+ * Valid means not being in the cache
+ * 
+ * @return the valid message
+*/
 std::string messageCreator::getMessage() {
     openCache();
     
@@ -111,6 +137,9 @@ std::string messageCreator::getMessage() {
     return message;
 }
 
+/**
+ * Get the number of lines in the cache
+*/
 int messageCreator::numberOfLines() {
     openCache();
 
@@ -120,10 +149,16 @@ int messageCreator::numberOfLines() {
     return count(std::istream_iterator<char>(cache), std::istream_iterator<char>(), '\n');
 }
 
+/**
+ * Open the cache when the controller is initialized
+*/
 messageCreator::messageCreator() {
     openCache();
 }
 
+/**
+ * Close the cache when the controller is destroyed
+*/
 messageCreator::~messageCreator() {
-    if(cache.is_open()) {cache.close();}
+    if(cache.is_open()) cache.close();
 }

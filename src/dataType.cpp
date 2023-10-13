@@ -1,9 +1,23 @@
+/**
+ * Datatype.cpp:
+ * Definitions of the members of the dataType class
+ * 
+ * @author Declan McGrellis
+*/
 #include <dataType.h>
 
+/**
+ * Initialize the dataType with a path to its file
+*/
 dataType::dataType(std::string file) {
     filePath = "data/" + file;
 }
 
+/**
+ * Get a random line of text from the dataType's file
+ * 
+ * @return the random line from the object's file
+*/
 std::string dataType::getRandomEntry() {
 
     file.open(filePath);
@@ -24,6 +38,9 @@ std::string dataType::getRandomEntry() {
     return currentLine;
 }
 
+/**
+ * Close the dataType's file if it is still open
+*/
 dataType::~dataType() {
-    if(file.is_open()) {file.close();}
+    if(file.is_open()) file.close();
 }

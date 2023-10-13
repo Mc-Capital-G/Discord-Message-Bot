@@ -1,17 +1,31 @@
+/**
+ * main.cpp:
+ * Discord Message Bot - 
+ * A very vulgar bot written to have some fun and make some wacky statements
+ * 
+ * @author Declan McGrellis
+*/
+
 #include <iostream>
 #include <fstream>
 #include <random>
-#include <dataType.h>
+#include "dataType.h"
 #include <dpp.h>
 #include <messageCreator.h>
 
+/**
+ * Function main runs at program start
+ * Turns the bot on and calls functions on events from Discord's API
+ * 
+ * @return The result of execution
+*/
 int main() {
 
-    std::ifstream tokenFile;
-    tokenFile.open("data/token.txt");
+    std::ifstream tokenFile("data/token.txt");
+    if(!tokenFile) std::cerr << "Could not open data/token.txt!" << std::endl;
   
     std::string token;
-    getline(tokenFile, token);
+    tokenFile >> token;
 
     tokenFile.close();
 

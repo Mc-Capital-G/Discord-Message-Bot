@@ -79,3 +79,5 @@ This guy definitely {VERB}s {NOUN}
 <@615210140009889840>
 You are {ADJ}
 I'm like the {NOUN} of {VERB}ing
+Jeremy such a hater fr
+{NOUN} is {NOUN}
