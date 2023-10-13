@@ -1,7 +1,10 @@
 build/
-libs/dpp
+libs/
 .vscode/
 data/token.txt
 src/.DS_Store
 data/cache.txt
 PunkinBot
+.DS_Store
+data/.DS_Store
+include/.DS_Store
