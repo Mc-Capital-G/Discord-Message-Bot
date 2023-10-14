@@ -20,6 +20,7 @@ std::string messageCreator::generateMessage() {
     dataType noun("nouns.txt");
     dataType verb("verbs.txt");
     dataType adjective("adjectives.txt");
+    dataType gif("gifs.txt");
     
     std::string output;
 
@@ -51,6 +52,11 @@ std::string messageCreator::generateMessage() {
         int i = output.find("{STATEMENT}");
         output.erase(i, 11);
         output.insert(i, generateMessage());
+    }
+    while(output.find("{GIF}") != std::string::npos) {
+        int i = output.find("{GIF}");
+        output.erase(i, 5);
+        output.insert(i, gif.getRandomEntry());
     }
 
     return output;

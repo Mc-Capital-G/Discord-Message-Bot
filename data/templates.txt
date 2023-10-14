@@ -82,3 +82,5 @@ I'm like the {NOUN} of {VERB}ing
 Jeremy such a hater fr
 {NOUN} is {NOUN}
 {REPEAT}
+{GIF}
+Me when I {VERB}: {GIF}

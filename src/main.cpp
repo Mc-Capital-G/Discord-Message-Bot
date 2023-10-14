@@ -53,6 +53,7 @@ int main() {
     std::uniform_int_distribution<int> dist(1, 35);
     int randomMessageNum = dist(rd);
 
+    // tracker for if the bot is paused
     bool pauseBot = false;
 
     // When a message is created in any channel the bot can see, it will run this code
