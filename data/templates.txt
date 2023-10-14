@@ -84,3 +84,7 @@ Jeremy such a hater fr
 {REPEAT}
 {GIF}
 Me when I {VERB}: {GIF}
+{STATEMENT} {GIF}
+{NOUN} {GIF}
+This is you rn: {REPEAT}
+This is {NOUN} rn: {GIF}

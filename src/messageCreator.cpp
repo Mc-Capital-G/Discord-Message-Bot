@@ -94,6 +94,8 @@ bool messageCreator::checkCache() {
 /**
  * Generate random messages until a new valid* message has been generated, and update the cache with the new message
  * Valid means not being in the cache
+ * If the generated message calls to repeat the users message, 
+ * remove mentions of the bot from the string to not have them in the output
  * 
  * @return the valid message
 */
@@ -105,23 +107,33 @@ std::string messageCreator::getMessage(std::string usrMessage) {
     do { message = generateMessage(); } while (checkCache());
 
     // if the bot rolls a {REPEAT}, we are going to repeat the users message
-    if(message == "{REPEAT}") {
+    if(message.find("{REPEAT}") != std::string::npos) {
 
         addToCache = false;
 
-        message = usrMessage;
+        while(message.find("{REPEAT}") != std::string::npos) {
+            
+            // create a new string to manipulate the input user message to not fuck with the given value
+            std::string editUsrMsg = usrMessage;
 
-        // remove the @PunkinBot from the message so the bot does not @ himself and loop for eternity
-        // only replace the @PunkinBot with ... if it is the only thing that is non-whitespace
-        while(message.find("<@615210140009889840>") != std::string::npos) {
-            int i = message.find("<@615210140009889840>");
-            message.erase(i, 21);
-            if(message.find_first_not_of(" ") == std::string::npos) message.insert(i, "...");
-        }
+            // remove the @PunkinBot from the message so the bot does not @ himself and loop for eternity
+            // only replace the @PunkinBot with ... if it is the only thing that is non-whitespace
+            while(editUsrMsg.find("<@615210140009889840>") != std::string::npos) {
+                int x = editUsrMsg.find("<@615210140009889840>");
+                editUsrMsg.erase(x, 21);
+                if(editUsrMsg.find_first_not_of(" ") == std::string::npos) editUsrMsg.insert(x, "...");
+            }
 
-        for(int i = 0; i < message.size(); i++) {
-            if(i % 2 == 0) message[i] = std::toupper(message[i]);
-            else message[i] = std::tolower(message[i]);
+            int i = message.find("{REPEAT}");
+            message.erase(i, 8);
+            message.insert(i, editUsrMsg);
+
+            
+            for(int j = i; j < i + editUsrMsg.size(); j++) {
+                if(j % 2 == 0) message[j] = std::toupper(message[j]);
+                else message[j] = std::tolower(message[j]);
+            }
+            
         }
 
     }
