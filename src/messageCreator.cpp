@@ -21,10 +21,8 @@ std::string messageCreator::generateMessage() {
     dataType verb("verbs.txt");
     dataType adjective("adjectives.txt");
     dataType gif("gifs.txt");
-    
-    std::string output;
 
-    output = templates.getRandomEntry();
+    std::string output = templates.getRandomEntry();
     
     // for each dataType object, find any placeholder elements and 
     // replace it with a generated output from the dataType
