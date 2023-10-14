@@ -16,25 +16,20 @@
 */
 std::string messageCreator::generateMessage() {
 
-    dataType templates("templates.txt", "{STATEMENT}");
-
     std::vector<dataType*> types;
     
+    // templates.txt MUST be the file for the first member of the types vector, 
+    // otherwise messages will not be generated properly
+
+    types.emplace_back(new dataType("templates.txt", "{STATEMENT}"));
     types.emplace_back(new dataType("nouns.txt", "{NOUN}"));
     types.emplace_back(new dataType("verbs.txt", "{VERB}"));
     types.emplace_back(new dataType("adjectives.txt", "{ADJ}"));
     types.emplace_back(new dataType("gifs.txt", "{GIF}"));
 
-    // generate a template for the message, and if the template contains another template, 
-    // get another template and place it in the output
-    std::string output = templates.getRandomEntry();
-    while(output.find(templates.getPlaceHolder()) != std::string::npos) {
+    // generate a template for the message from the first dataType in the types vector
 
-        int i = output.find(templates.getPlaceHolder());
-        output.erase(i, templates.getPlaceHolderSize());
-        output.insert(i, generateMessage());
-
-    }
+    std::string output = types[0]->getRandomEntry();
     
     // for each dataType object, find any placeholder elements and 
     // replace it with a generated output from the dataType
