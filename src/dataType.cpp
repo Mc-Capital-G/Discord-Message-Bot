@@ -9,8 +9,9 @@
 /**
  * Initialize the dataType with a path to its file
 */
-dataType::dataType(std::string file) {
+dataType::dataType(std::string file, std::string holder) {
     filePath = "data/" + file;
+    placeHolder = holder;
 }
 
 /**
@@ -36,6 +37,24 @@ std::string dataType::getRandomEntry() {
 
     file.close();
     return currentLine;
+}
+
+/**
+ * Get the placeholder string associated with the dataType
+ * 
+ * @return the placeholder string
+*/
+std::string dataType::getPlaceHolder() {
+    return placeHolder;
+}
+
+/**
+ * Get the size of the placeholder string
+ * 
+ * @return the size of the placeholder string
+*/
+int dataType::getPlaceHolderSize() {
+    return placeHolder.size();
 }
 
 /**

@@ -12,6 +12,7 @@
 
 #pragma once
 #include "dataType.h"
+#include <vector>
 #include <cstdio>
 #include <iostream>
 #include <string>

@@ -17,11 +17,14 @@
 class dataType {
     public:
         std::string getRandomEntry();
-        dataType(std::string file);
+        std::string getPlaceHolder();
+        int getPlaceHolderSize();
+        dataType(std::string file, std::string holder);
         ~dataType();
     private:
         std::ifstream file;
         std::string filePath;
+        std::string placeHolder;
         int numberOfLines;
         std::string currentLine;
 

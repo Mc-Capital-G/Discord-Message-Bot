@@ -16,46 +16,42 @@
 */
 std::string messageCreator::generateMessage() {
 
-    dataType templates("templates.txt");
-    dataType noun("nouns.txt");
-    dataType verb("verbs.txt");
-    dataType adjective("adjectives.txt");
-    dataType gif("gifs.txt");
+    dataType templates("templates.txt", "{STATEMENT}");
 
+    std::vector<dataType*> types;
+    
+    types.emplace_back(new dataType("nouns.txt", "{NOUN}"));
+    types.emplace_back(new dataType("verbs.txt", "{VERB}"));
+    types.emplace_back(new dataType("adjectives.txt", "{ADJ}"));
+    types.emplace_back(new dataType("gifs.txt", "{GIF}"));
+
+    // generate a template for the message, and if the template contains another template, 
+    // get another template and place it in the output
     std::string output = templates.getRandomEntry();
+    while(output.find(templates.getPlaceHolder()) != std::string::npos) {
+
+        int i = output.find(templates.getPlaceHolder());
+        output.erase(i, templates.getPlaceHolderSize());
+        output.insert(i, generateMessage());
+
+    }
     
     // for each dataType object, find any placeholder elements and 
     // replace it with a generated output from the dataType
 
-    while (output.find("{VERB}")!= std::string::npos) {
-        int i = output.find("{VERB}");
-        output.erase(i, 6);
-        output.insert(i, verb.getRandomEntry());
+    for(int i = 0; i < types.size(); i++) {
+
+        while(output.find(types[i]->getPlaceHolder()) != std::string::npos) {
+        
+            int j = output.find(types[i]->getPlaceHolder());
+            output.erase(j, types[i]->getPlaceHolderSize());
+            output.insert(j, types[i]->getRandomEntry());
+
+        }
 
     }
 
-     while (output.find("{NOUN}")!= std::string::npos) {
-        int i = output.find("{NOUN}");
-        output.erase(i, 6);
-        output.insert(i, noun.getRandomEntry());
-
-    }
-    while (output.find("{ADJ}")!= std::string::npos) {
-        int i = output.find("{ADJ}");
-        output.erase(i, 5);
-        output.insert(i, adjective.getRandomEntry());
-
-    }
-    while(output.find("{STATEMENT}") != std::string::npos) {
-        int i = output.find("{STATEMENT}");
-        output.erase(i, 11);
-        output.insert(i, generateMessage());
-    }
-    while(output.find("{GIF}") != std::string::npos) {
-        int i = output.find("{GIF}");
-        output.erase(i, 5);
-        output.insert(i, gif.getRandomEntry());
-    }
+    for(int i = 0; i < types.size(); i++) delete types[i];
 
     return output;
 }
