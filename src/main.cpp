@@ -37,8 +37,10 @@ int main() {
     // initializing the bot object
     dpp::cluster bot(token, intents);
 
-    //initializing our messageCreator controller object
-    messageCreator mC;
+    //initializing our messageCreator controller object -> make sure templates is first
+    std::string files[] = {"templates.txt", "nouns.txt", "verbs.txt", "adjectives.txt", "gifs.txt"};
+    std::string placeHolders[] = {"{STATEMENT}", "{NOUN}", "{VERB}", "{ADJ}", "{GIF}"};
+    messageCreator mC(files, placeHolders, 5);
 
     // When the bot successfully connects to Discord, print to the terminal that we are logged in as the bot
     bot.on_ready([&bot](const dpp::ready_t & event) {

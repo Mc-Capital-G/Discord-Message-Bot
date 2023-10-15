@@ -21,14 +21,16 @@ class messageCreator {
 
     public:
         std::string getMessage(std::string usrMessage);
-        messageCreator();
+        messageCreator(std::string files[], std::string placeHolders[], int numOfDataTypes);
         ~messageCreator();
     private:
         bool checkCache();
+        int numberOfLines();
+        void openCache();
         std::fstream cache;
         std::string generateMessage();
         std::string message;
-        int numberOfLines();
-        void openCache();
+        std::vector<dataType*> types;
+    
 
 };

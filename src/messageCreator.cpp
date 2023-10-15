@@ -15,17 +15,9 @@
  * @return the generated random message
 */
 std::string messageCreator::generateMessage() {
-
-    std::vector<dataType*> types;
     
     // templates.txt MUST be the file for the first member of the types vector, 
     // otherwise messages will not be generated properly
-
-    types.emplace_back(new dataType("templates.txt", "{STATEMENT}"));
-    types.emplace_back(new dataType("nouns.txt", "{NOUN}"));
-    types.emplace_back(new dataType("verbs.txt", "{VERB}"));
-    types.emplace_back(new dataType("adjectives.txt", "{ADJ}"));
-    types.emplace_back(new dataType("gifs.txt", "{GIF}"));
 
     // generate a template for the message from the first dataType in the types vector
 
@@ -45,8 +37,6 @@ std::string messageCreator::generateMessage() {
         }
 
     }
-
-    for(int i = 0; i < types.size(); i++) delete types[i];
 
     return output;
 }
@@ -185,10 +175,14 @@ int messageCreator::numberOfLines() {
 }
 
 /**
- * Open the cache when the controller is initialized
+ * Initialize our controller by populating its vector of dataTypes with new dataTypes we generate from parameters
 */
-messageCreator::messageCreator() {
+messageCreator::messageCreator(std::string files[], std::string placeHolders[], int numOfDataTypes) {
     openCache();
+    types.clear();
+    for(int i = 0; i < numOfDataTypes; i++) {
+        types.push_back(new dataType(files[i], placeHolders[i]));
+    }
 }
 
 /**
@@ -196,4 +190,5 @@ messageCreator::messageCreator() {
 */
 messageCreator::~messageCreator() {
     if(cache.is_open()) cache.close();
+    for(int i = 0; i < types.size(); i++) delete types[i];
 }
