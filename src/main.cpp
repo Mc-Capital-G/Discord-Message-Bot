@@ -37,7 +37,11 @@ int main() {
     // initializing the bot object
     dpp::cluster bot(token, intents);
 
-    //initializing our messageCreator controller object -> make sure templates is first
+    /* 
+    * initializing our messageCreator controller object 
+    * templates.txt MUST be the file for the first member of the types vector, 
+    * otherwise messages will not be generated properly
+    */
     std::string files[] = {"templates.txt", "nouns.txt", "verbs.txt", "adjectives.txt", "gifs.txt"};
     std::string placeHolders[] = {"{STATEMENT}", "{NOUN}", "{VERB}", "{ADJ}", "{GIF}"};
     messageCreator mC(files, placeHolders, 5);

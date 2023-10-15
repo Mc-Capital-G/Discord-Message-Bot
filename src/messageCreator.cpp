@@ -15,9 +15,6 @@
  * @return the generated random message
 */
 std::string messageCreator::generateMessage() {
-    
-    // templates.txt MUST be the file for the first member of the types vector, 
-    // otherwise messages will not be generated properly
 
     // generate a template for the message from the first dataType in the types vector
 
