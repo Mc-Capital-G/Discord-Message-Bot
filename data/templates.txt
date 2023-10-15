@@ -88,3 +88,6 @@ Me when I {VERB}: {GIF}
 {NOUN} {GIF}
 This is you rn: {REPEAT}
 This is {NOUN} rn: {GIF}
+{NOUN} when {NOUN} {VERB}s
+{VERB} up {NOUN}
+Did {NOUN} just {VERB} up {NOUN}????

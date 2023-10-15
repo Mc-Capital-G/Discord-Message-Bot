@@ -13,6 +13,7 @@
 #include "dataType.h"
 #include <dpp.h>
 #include "messageCreator.h"
+#include <vector>
 
 /**
  * Function main runs at program start
@@ -53,11 +54,18 @@ int main() {
     std::uniform_int_distribution<int> dist(1, 35);
     int randomMessageNum = dist(rd);
 
-    // tracker for if the bot is paused
-    bool pauseBot = false;
+    // tracker for what channels are paused for the bot
+    std::vector<dpp::snowflake> pausedChannels;
+    pausedChannels.clear();
 
     // When a message is created in any channel the bot can see, it will run this code
-    bot.on_message_create([&bot, &msgCount, &randomMessageNum, &dist, &mC, &pauseBot](const dpp::message_create_t & event){
+    bot.on_message_create([&bot, &msgCount, &randomMessageNum, &dist, &mC, &pausedChannels](const dpp::message_create_t & event){
+        
+        // check to see if the channel the message was generated in was a paused channel or not
+        bool pauseBot = false;
+        for(int i = 0; i < pausedChannels.size(); i++) {
+            if(pausedChannels[i] == event.msg.channel_id) pauseBot = true;
+        }
 
         if(!pauseBot) {
             // create a message and reset the random message counter if the message hits the previous generated limit
@@ -81,21 +89,29 @@ int main() {
             msgCount++;
         }
 
-        // pause the bot if the user says goodbye to it
+        // pause the bot if the user says goodbye to it, while checking to see if the channel is already paused
         if(event.msg.content == "Goodbye <@615210140009889840>") {
 
-            bot.message_create(dpp::message(event.msg.channel_id, "See you later nerd."));
-
-            pauseBot = true;
+            bool isInVector = false;
+            for(int i = 0; i < pausedChannels.size(); i++) {
+                if(pausedChannels[i] == event.msg.channel_id) isInVector = true;
+            }
+            if(!isInVector) {
+                pausedChannels.emplace_back(event.msg.channel_id);
+                bot.message_create(dpp::message(event.msg.channel_id, "See you later nerd."));
+            }
 
         }
 
         // unpause the bot
         if(event.msg.content == "Wakey wakey <@615210140009889840>") {
 
-            bot.message_create(dpp::message(event.msg.channel_id, "I have returned."));
-
-            pauseBot = false;
+            for(int i = 0; i < pausedChannels.size(); i++) {
+                if(pausedChannels[i] == event.msg.channel_id) { 
+                    pausedChannels.erase(pausedChannels.begin()+i);
+                    bot.message_create(dpp::message(event.msg.channel_id, "I have returned."));
+                }
+            }
 
         }
 
