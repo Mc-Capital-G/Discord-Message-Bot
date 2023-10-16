@@ -8,6 +8,7 @@
 
 /**
  * Initialize the dataType with a path to its file
+ * only requires the name of the file, the relative path from where the executable is run is added on here.
 */
 dataType::dataType(std::string file, std::string holder) {
     filePath = "data/" + file;
@@ -16,6 +17,8 @@ dataType::dataType(std::string file, std::string holder) {
 
 /**
  * Get a random line of text from the dataType's file
+ * Note that a line is counted as all text between newline characters, 
+ * so one "sentence" containing a newline char is impossible
  * 
  * @return the random line from the object's file
 */
@@ -31,9 +34,7 @@ std::string dataType::getRandomEntry() {
 
     int randomLineNumber = dist(rd);
 
-    for(int i = 0; i < randomLineNumber; i++) {
-        getline(file, currentLine);
-    }
+    for(int i = 0; i < randomLineNumber; i++) getline(file, currentLine);
 
     file.close();
     return currentLine;

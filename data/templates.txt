@@ -91,3 +91,7 @@ This is {NOUN} rn: {GIF}
 {NOUN} when {NOUN} {VERB}s
 {VERB} up {NOUN}
 Did {NOUN} just {VERB} up {NOUN}????
+Is {NOUN} the new {NOUN}??
+la du du du du du du du la du du du du du du du
+{NOUN} be like: {STATEMENT}
+{ADJ} {NOUN} {NOUN} gang
